@@ -1,0 +1,97 @@
+
+	+ String pool?
+String pool (còn được gọi là constant pool hoặc string constant pool) là một kỹ thuật trong lập trình, thường được sử dụng trong các ngôn ngữ lập trình như Java, để tối ưu hóa việc sử dụng bộ nhớ cho các chuỗi (strings).
+
+Khi bạn khai báo một chuỗi trong chương trình, thông thường chuỗi đó được lưu trữ trong vùng nhớ có tên là string pool. String pool duy trì một bộ sưu tập các chuỗi duy nhất trong ứng dụng. Nếu một chuỗi mới được tạo và nó đã tồn tại trong string pool, thay vì tạo một bản sao mới, thì tham chiếu đến chuỗi đã tồn tại trong string pool sẽ được trả về. Điều này giúp tiết kiệm bộ nhớ bởi vì các chuỗi có thể được chia sẻ và tái sử dụng.
+
+String pool có lợi ích làm giảm sự lãng phí bộ nhớ bằng cách chỉ lưu trữ một bản sao duy nhất của mỗi chuỗi trong ứng dụng. Điều này đặc biệt hữu ích khi xử lý nhiều chuỗi có cùng nội dung, ví dụ như khi sử dụng các hằng số chuỗi trong mã nguồn.
+
+Tuy nhiên, điều này cũng có thể dẫn đến một số vấn đề. Vì các chuỗi trong string pool là không thay đổi (immutable), nếu bạn thực hiện các phép toán trên chuỗi và tạo ra các chuỗi mới, các chuỗi mới đó sẽ không được lưu trong string pool mà sẽ tạo ra một bản sao mới. Do đó, việc sử dụng không cẩn thận của các phép toán trên chuỗi có thể gây lãng phí bộ nhớ và làm tăng thời gian thực thi của chương trình.
+
+
+	+ Khi khởi tạo String = "" và new String() có gì khác nhau không?
+Khi khởi tạo một đối tượng String bằng cách sử dụng cú pháp String str = ""; và String str = new String();, có một số khác biệt nhỏ giữa hai cách này.
+
+Khởi tạo bằng cú pháp String str = "";: Đây là cách thông thường được sử dụng để khởi tạo một chuỗi rỗng trong Java. Khi sử dụng cú pháp này, một đối tượng String rỗng sẽ được tạo ra và được lưu trữ trong string pool (nếu chuỗi chưa tồn tại trong pool). Các tham chiếu đến chuỗi rỗng này sẽ trỏ đến cùng một đối tượng trong string pool.
+
+Khởi tạo bằng cú pháp String str = new String();: Khi sử dụng cú pháp này, một đối tượng String rỗng sẽ được tạo ra, nhưng không nằm trong string pool. Thay vào đó, một đối tượng mới được cấp phát trong vùng nhớ heap, và tham chiếu str sẽ trỏ đến đối tượng này. Điều này có nghĩa là mỗi khi sử dụng cú pháp new String(), một đối tượng String mới sẽ được tạo ra, dù có chuỗi tương tự đã tồn tại trong string pool hay không.
+
+Vì các đối tượng String trong string pool là không thay đổi (immutable) và có thể được chia sẻ, việc sử dụng cú pháp String str = ""; thường được khuyến nghị để tạo ra các chuỗi rỗng. Điều này giúp tối ưu hóa việc sử dụng bộ nhớ bởi vì các tham chiếu đến chuỗi rỗng sẽ trỏ đến cùng một đối tượng trong string pool, giảm sự lãng phí bộ nhớ so với việc tạo ra các đối tượng String rỗng mới bằng cú pháp new String().
+
+
+	+ Thread là gì?
+	+ Có những cách nào khởi tạo 1 thread?
+
+	+ Làm sao để so sánh 2 Object với nhau?
+Để so sánh hai đối tượng với nhau, có hai phương pháp phổ biến là so sánh theo địa chỉ bộ nhớ (reference comparison) và so sánh giá trị (value comparison). Cách sử dụng phụ thuộc vào loại đối tượng và yêu cầu so sánh cụ thể của bạn.
+
+So sánh theo địa chỉ bộ nhớ (reference comparison):
+
+Trong Java, toán tử == được sử dụng để so sánh hai đối tượng theo địa chỉ bộ nhớ của chúng. Nếu hai đối tượng có cùng địa chỉ bộ nhớ, thì chúng được coi là đồng tham chiếu (đều trỏ đến cùng một vị trí trong bộ nhớ), và phép so sánh sẽ trả về kết quả true.
+Ví dụ: obj1 == obj2
+So sánh giá trị (value comparison):
+
+Đối với các đối tượng có sẵn trong Java như String, Integer, Double,... bạn có thể sử dụng phương thức equals() để so sánh giá trị của chúng.
+Ví dụ: obj1.equals(obj2)
+Phương thức equals() trong các lớp được xây dựng sẵn trong Java thường được ghi đè để so sánh các giá trị bên trong đối tượng. Ví dụ, trong lớp String, phương thức equals() so sánh giá trị của hai chuỗi dựa trên nội dung của chúng, không chỉ đơn thuần so sánh địa chỉ bộ nhớ.
+Lưu ý rằng phép so sánh giá trị phụ thuộc vào cách cài đặt của phương thức equals() trong từng lớp đối tượng. Nếu bạn đang làm việc với đối tượng tùy chỉnh, bạn nên ghi đè phương thức equals() và hashCode() để xác định cách so sánh giá trị của đối tượng của bạn.
+
+
+	+ FunctionalInterface là gì?
+
+	+ Stream API là gì?
+	+ Dùng interface Function, phương thức apply() bào giờ chưa?
+- Spring:
+	+ Spring security là gì? 
+	+ Cơ chế hoạt động của Spring security là gì?
+	+ Cơ chế oauth2 hoạt động như thế nào?
+	+ Dependecy Inversion là gì?
+	+ Dependecy Injection là gì?
+	+ IoC là gì?
+	+ Các cách inject?
+	+ @Autowire để làm gì?
+	+ Bean là gì? Các cách khởi tạo bean?
+	+ Nếu có 2 bean cùng type làm sao để phân biệt 2 bean đó?
+- DB
+	+ Nếu có rất nhiều connect đến DB làm thế nào? (Nó hỏi connection pool gì đó mà đọc k hiểu gì)
+	+ Index là gì?
+	+ Tại sao dùng index lại truy vấn nhanh hơn?
+	+ Nhược điểm của nó là gì?
+
+	+ Làm sao để tối ưu perfomance cho câu SQL?
+Để tối ưu hiệu suất của câu SQL, bạn có thể áp dụng các kỹ thuật và quy tắc sau:
+
+Chỉ lấy những cột cần thiết: Hạn chế lấy tất cả các cột trong bảng, chỉ lấy những cột cần thiết để giảm tải dữ liệu và tăng tốc độ truy xuất.
+
+Sử dụng chỉ mục (indexing): Xác định và tạo chỉ mục cho các cột thường xuyên được sử dụng trong các câu truy vấn. Chỉ mục giúp tìm kiếm và truy xuất dữ liệu nhanh hơn.
+
+Sử dụng câu truy vấn gọn và hiệu quả: Tối ưu câu truy vấn bằng cách sử dụng các câu truy vấn ngắn gọn và sử dụng các phép toán SQL hiệu quả như JOIN, GROUP BY, HAVING, và WHERE để giới hạn dữ liệu trước khi lấy về.
+
+Tránh sử dụng toán tử LIKE với ký tự đầu: Sử dụng chỉ mục tiền tố (prefix index) nếu cần sử dụng toán tử LIKE với ký tự đầu. Điều này giúp tối ưu tìm kiếm dữ liệu dựa trên tiền tố.
+
+Sử dụng câu truy vấn tham số hóa (parameterized queries): Sử dụng tham số thay vì các giá trị cứng trong câu truy vấn để tránh tấn công SQL injection và tăng hiệu suất câu truy vấn được lưu trong bộ nhớ cache.
+
+Tối ưu hóa schema cơ sở dữ liệu: Thiết kế schema cơ sở dữ liệu sao cho phù hợp với mô hình dữ liệu và nhu cầu truy xuất dữ liệu. Đảm bảo sự chuẩn hóa (normalization) và đảm bảo các quan hệ giữa các bảng được thiết lập đúng cách.
+
+Sử dụng transaction một cách hiệu quả: Định nghĩa và sử dụng transaction một cách chính xác để đảm bảo tính nhất quán và an toàn cho dữ liệu.
+
+Sử dụng cache dữ liệu: Sử dụng cache để lưu trữ các dữ liệu truy xuất thường xuyên để giảm tải cơ sở dữ liệu và tăng tốc độ truy xuất.
+
+Đánh giá và tối ưu lại câu truy vấn: Sử dụng các công cụ và hệ thống giám sát để phân tích và đánh giá hiệu suất của câu truy vấn. Dựa trên đánh giá, điều chỉnh câu truy vấn và cấu trúc cơ sở dữ liệu để cải thiện hiệu suất.
+
+Cân nhắc sử dụng các công nghệ nâng cao: Trong một số trường hợp đặc biệt, có thể sử dụng các công nghệ nâng cao như database sharding, database partitioning, hoặc replication để tăng hiệu suất và khả năng mở rộng của cơ sở dữ liệu.
+
+Quan trọng nhất, hãy xem xét và phân tích tình huống cụ thể của bạn, sử dụng các công cụ và kỹ thuật tối ưu phù hợp để đạt được hiệu suất tốt nhất cho câu SQL của bạn.
+
+
+- Other
+	+ Nếu trong 1 khách sạn có còn 10 phòng mà cùng 1 lúc có 20 request cùng đặt phòng làm sao để phân chia phòng mà không bị conflict nhau?
+	+ Dùng rancher để làm gì?
+	+ Dùng jenkins để làm gì? Có setup được server không?
+	+ CI/CD dùng trong dự án dùng gì để chạy? Cơ chế CICD là gì?
+	+ Server của microservices dùng gì để config?
+	+ Mỗi service trong microservices dùng một node hay như nào( câu này k nhớ câu hỏi lắm)
+	+ Redis là gì? Dùng redis trong dự án để làm gì?
+	+ Live code: Input là một mảng các số nguyên. Cần in ra mảng các phần tử với giá trị là số các phần tử trước đó lớn hơn nó.
+        Eg: Input [5, 43, 10, 1, 55, 21] ==> Output [0, 0, 1, 3, 0, 2]
+	+ Một số câu hỏi về chế độ công ty thế này thế kia thì sẽ làm sao?
